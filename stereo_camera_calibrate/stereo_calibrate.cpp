@@ -359,12 +359,12 @@ StereoCalib(const char* imageList, int nx, int ny, int useUncalibrated, float _s
                     cvNamedWindow( "disparity" );
                     cvShowImage( "disparity", vdisp );
 					cvSaveImage("vdisp.pgm", vdisp);
-					cvSaveImage("img1r.ppm", img1r);
+		/*			cvSaveImage("img1r.ppm", img1r);
 					cvSaveImage("img2r.ppm", img2r);
 					cvFindStereoCorrespondenceGC( img1r, img2r, dispLeft, dispRight, GCState, false);
 					cvNamedWindow( "dispLeft" );
 					cvShowImage( "dispLeft", dispLeft );
-					cvSaveImage("dispLeft.pgm", dispLeft );
+					cvSaveImage("dispLeft.pgm", dispLeft ); */
                 }
                 if( !isVerticalStereo )
                 {

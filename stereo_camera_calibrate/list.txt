@@ -1,2 +1,2 @@
-imagenes/left05.ppm
-imagenes/right05.ppm
+img2/left000.jpg
+img2/right000.jpg

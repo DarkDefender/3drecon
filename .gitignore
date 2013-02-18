@@ -1,6 +1,7 @@
 #ignore build files
-build/*
-CMakeFiles/*
+build/
+CMakeFiles/
+*.cmake
 #ignore image files that are huge
 *.ppm
 *.jpg
