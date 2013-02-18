@@ -38,6 +38,9 @@
 #include <pcl/visualization/pcl_visualizer.h>
 #include <boost/thread/thread.hpp>
 
+// For writing to .PLY - Brian Morgan, 2/17/2012
+#include <pcl/io/ply_io.h>
+
 //Kids, using this kind of #define is quite dirty, don't do it at home!!
 #define CUSTOM_REPROJECT
 /*** To understand the CUSTOM_REPROJECT code, please read Chapter 12 of the book
@@ -66,9 +69,9 @@ boost::shared_ptr<pcl::visualization::PCLVisualizer> createVisualizer (pcl::Poin
 
 int main( int argc, char** argv )
 {
-  //Check arguments
   if (argc != 4)
   {
+  //Check arguments
     std::cerr << "Usage: " << argv[0] << " <rgb-image-filename> <disparity-image-filename> <path-to-Q-matrix>" << std::endl;
     return 1;
   }
@@ -214,6 +217,14 @@ int main( int argc, char** argv )
   boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer;
   viewer = createVisualizer( point_cloud_ptr );
   
+  // Write to .PLY file - added by Brian Morgan
+  // There is an option to set the origin when you write
+  cout << "Writing to pclout.ply...";
+  pcl::PLYWriter plyWriter; // <pcl::PointXYZRGB>
+  int writeSuccess = plyWriter.write("pclout.ply", *point_cloud_ptr);
+  if (!writeSuccess)
+    cout << "File Write failed.";
+
   //Main loop
   while ( !viewer->wasStopped())
   {
