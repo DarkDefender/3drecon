@@ -1,2 +1,6 @@
 This is a fork of https://github.com/drewmalone/3drecon
 This project was developed for Senior Design at University of Texas ECE
+
+Stereo Calibration and matching Algorithms from Martin Peris: http://blog.martinperis.com/2011/01/opencv-stereo-camera-calibration.html and
+http://blog.martinperis.com/2012/01/3d-reconstruction-with-opencv-and-point.html
+
