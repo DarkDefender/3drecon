@@ -195,7 +195,7 @@ int main( int argc, char** argv )
 			py = recons_ptr[3*j+1];
 			pz = recons_ptr[3*j+2];
 #endif
-			/* remove points too far away */
+			/* remove points too far away (>10m) */
 			if(abs(pz) > 10)
 				continue;
 			//Get RGB info
@@ -226,14 +226,20 @@ int main( int argc, char** argv )
 	// There is an option to set the origin when you write
 	char fname[100];
 	std::string fullname = argv[1];
-	size_t lastindex = fullname.find_last_of("."); 
-	std::string rawname = fullname.substr(0, lastindex);
+	/* revome path name from full path */
+	size_t last_slash = fullname.find_last_of("/");
+    if(std::string::npos != last_slash)
+		fullname.erase(0,last_slash+1);
+	/* remove extension */
+	size_t last_dot = fullname.find_last_of(".");
+	std::string rawname = fullname.substr(0, last_dot);
 	sprintf(fname, "%s.pcd", rawname.c_str());
 	cout << "Writing to point cloud to " << fname << endl;
+	
 	pcl::PCDWriter pcdWriter; 
 	int writeSuccess = pcdWriter.write(fname, *point_cloud_ptr, true); //true = binary, false = ascii
 	cv::waitKey(100);
-	if (!writeSuccess)
+	if (writeSuccess != 0)
 		cout << "File Write failed." << endl;
 
 	//Main loop
