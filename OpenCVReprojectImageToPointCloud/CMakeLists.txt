@@ -11,6 +11,6 @@ link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
 find_package( OpenCV REQUIRED )
-add_executable( OpenCVReprojectImageToPointCloud opencv_reproject_image_pcl.cpp )
-target_link_libraries( OpenCVReprojectImageToPointCloud ${OpenCV_LIBS} ${PCL_LIBRARIES})
+add_executable( disp2cloud opencv_reproject_image_pcl.cpp )
+target_link_libraries( disp2cloud ${OpenCV_LIBS} ${PCL_LIBRARIES})
 
