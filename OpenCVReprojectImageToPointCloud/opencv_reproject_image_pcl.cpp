@@ -99,12 +99,12 @@ int main( int argc, char** argv )
 	Q32 = Q.at<double>(3,2);
 	Q33 = Q.at<double>(3,3);
 
-	std::cout << "Q(0,3) = "<< Q03 <<"; Q(1,3) = "<< Q13 <<"; Q(2,3) = "<< Q23 <<"; Q(3,2) = "<< Q32 <<"; Q(3,3) = "<< Q33 <<";" << std::endl;
+	//std::cout << "Q(0,3) = "<< Q03 <<"; Q(1,3) = "<< Q13 <<"; Q(2,3) = "<< Q23 <<"; Q(3,2) = "<< Q32 <<"; Q(3,3) = "<< Q33 <<";" << std::endl;
 
 #endif  
 
 
-	std::cout << "Read matrix in file " << argv[3] << std::endl;
+	//std::cout << "Read matrix in file " << argv[3] << std::endl;
 
 	//Show the values inside Q (for debug purposes)
 	/*
@@ -196,12 +196,16 @@ int main( int argc, char** argv )
 			pz = recons_ptr[3*j+2];
 #endif
 			/* remove points too far away (>10m) */
-			if(abs(pz) > 10)
+			if(px*px + py*py + pz*pz > 100) // 10^2 = 100
 				continue;
 			//Get RGB info
 			pb = rgb_ptr[3*j];
 			pg = rgb_ptr[3*j+1];
 			pr = rgb_ptr[3*j+2];
+			/* remove black/white points, i.e. w/o info */
+			if(pb == pg && pg == pr)
+				if(pr == 255 || pr == 0)
+					continue;
 
 			//Insert info into point cloud structure
 			pcl::PointXYZRGB point;
