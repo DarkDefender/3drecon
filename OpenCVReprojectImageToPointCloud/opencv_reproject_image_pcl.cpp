@@ -202,10 +202,13 @@ int main( int argc, char** argv )
 			pb = rgb_ptr[3*j];
 			pg = rgb_ptr[3*j+1];
 			pr = rgb_ptr[3*j+2];
+			
 			/* remove black/white points, i.e. w/o info */
+			/* don't touch, very potent!
 			if(pb == pg && pg == pr)
 				if(pr == 255 || pr == 0)
 					continue;
+			*/
 
 			//Insert info into point cloud structure
 			pcl::PointXYZRGB point;
